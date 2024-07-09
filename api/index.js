@@ -5,6 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const INTERVAL = 5 * 60 * 1000;
+const TIMEOUT = 3 * 60 * 1000;
 // const INTERVAL = 20 * 1000;
 const myUrl = 'https://mispagos.onrender.com/info'
 
@@ -45,7 +46,7 @@ function storeLog(input) {
 function consultaMisPagos() {
   const fecha = new Date();
   
-  axios.get(myUrl, { timeout: 90 * 1000 })
+  axios.get(myUrl, { timeout: TIMEOUT })
     .then(response => {
       appsStatus.app1.estado = {
         lastSuccess: fecha.toISOString(),
